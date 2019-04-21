@@ -9,7 +9,6 @@ var express = require('express');
 
 var app = express();
 
-
 app.use(bodyParser.urlencoded({
   extended: false
 }));
@@ -22,10 +21,14 @@ app.get('/', (req, res) => {
 
 app.get('/webhook', function(req, res) { // Đây là path để validate tooken bên app facebook gửi qua
 
-  if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
-    res.send(req.query['hub.challenge']);
-  }
-  res.send('Error, wrong validation token 123');
+
+console.log(util.inspect(req, false, null));
+
+
+  // if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
+  //   res.send(req.query['hub.challenge']);
+  // }
+  // res.send('Error, wrong validation token 123');
 });
 
 app.post('/webhook', function(req, res) { // Phần xử lý tin nhắn của người dùng gửi đến
