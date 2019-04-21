@@ -5,7 +5,7 @@ const PAGE_ACCESS_TOKEN = 'EAACmjgn0xqcBAPlvZCkAHXjjD2uJMEW9bzeyWzuMZAi8kNksN3Jj
 
 const APIAI_TOKEN = process.env.APIAI_TOKEN;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
-
+var http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -15,9 +15,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const server = app.listen(process.env.PORT || 5000, () => {
-  console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+var server = http.createServer(app);
+
+app.get('/', (req, res) => {
+  res.send("Home page. Server running okay.");
 });
+
+// const server = app.listen(process.env.PORT || 5000, () => {
+//   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+// });
 
 const apiaiApp = apiai(APIAI_TOKEN);
 
