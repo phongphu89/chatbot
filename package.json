@@ -1,17 +1,27 @@
 {
-  "name": "chat-example",
-  "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "name": "fb-weather-bot",
+  "version": "0.1.0",
+  "description": "Facebook bot using api.ai",
   "main": "server.js",
-  "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phongphu89/chatbot"
+  },
+  "author": "Wind Phu",
   "scripts": {
     "start": "node server.js"
   },
+  "keywords": [
+    "bot",
+    "ai",
+    "chat",
+    "facebook",
+    "messenger"
+  ],
   "dependencies": {
-    "body-parser": "^1.15.1",
-    "express": "~3.2.4",
-    "morgan": "^1.7.0",
-    "request": "^2.72.0"
+    "apiai": "^3.0.3",
+    "body-parser": "^1.15.2",
+    "express": "~4.14.0",
+    "request": "^2.79.0"
   }
 }
