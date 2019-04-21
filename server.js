@@ -1,5 +1,5 @@
+'use strict';
 const APP_SECRET = '35d0e15227d015a91bd26d7e893365b7';
-const VALIDATION_TOKEN  = 'token_random';
 const PAGE_ACCESS_TOKEN = 'EAACmjgn0xqcBAPlvZCkAHXjjD2uJMEW9bzeyWzuMZAi8kNksN3JjPJirw8ZBih1DjR2Ss9ZCpCJBy2G5CRaJQg1TEX2C8854lYEZALniX3gLbZCsEte8Er8hr8iqAGHxqmzMSpmpZAHsleA3sZBPHDFLzgZAhfvMb986xJ7BCtNcBuAjzNR7Ly44YNQDZBTRpTTwUZD';
 
 var http = require('http');
@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var server = http.createServer(app);
@@ -21,7 +21,39 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 
 
 
+
 res.send(req.query);
+
+
+
+
+
+    // Your verify token. Should be a random string.
+    let VERIFY_TOKEN = "token_random";
+ 
+    // Parse the query params
+    let mode = req.query['hub.mode'];
+    let token = req.query['hub.verify_token'];
+    let challenge = req.query['hub.challenge'];
+ 
+    // Checks if a token and mode is in the query string of the request
+    if (mode && token) {
+ 
+        // Checks the mode and token sent is correct
+        if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+ 
+            // Responds with the challenge token from the request
+            console.log('WEBHOOK_VERIFIED');
+            res.status(200).send(challenge);
+ 
+        } else {
+            // Responds with '403 Forbidden' if verify tokens do not match
+            res.sendStatus(403);
+        }
+    }
+
+
+
 
   // if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
   //   res.send(req.query['hub.challenge']);
