@@ -25,7 +25,7 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 
  
 
-  res.send(JSON.stringify(req));
+  res.send(JSON.parse(req));
 
   // if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
   //   res.send(req.query['hub.challenge']);
