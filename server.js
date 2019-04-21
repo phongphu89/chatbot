@@ -21,13 +21,10 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
   if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     res.send(req.query['hub.challenge']);
   }
-  res.send('Error, wrong validation token');
+  res.send('Error, wrong validation token 123');
 });
 
 app.post('/webhook', function(req, res) { // Phần sử lý tin nhắn của người dùng gửi đến
-
-  console.log(123);
-
   var entries = req.body.entry;
   for (var entry of entries) {
     var messaging = entry.messaging;
