@@ -19,11 +19,6 @@ app.get('/', (req, res) => {
 
 app.get('/webhook', function(req, res) { // Đây là path để validate tooken bên app facebook gửi qua
 
-
-res.send(req.query['hub.mode'] + req.query['hub.verify_token']);
-
-
-
     // Your verify token. Should be a random string.
     let VERIFY_TOKEN = "token_random";
  
@@ -48,13 +43,10 @@ res.send(req.query['hub.mode'] + req.query['hub.verify_token']);
         }
     }
 
-
-
-
   // if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
   //   res.send(req.query['hub.challenge']);
   // }
-  // res.send('Error, wrong validation token 123');
+  // res.send('Error, wrong validation token');
 });
 
 app.post('/webhook', function(req, res) { // Phần xử lý tin nhắn của người dùng gửi đến
